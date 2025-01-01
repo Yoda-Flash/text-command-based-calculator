@@ -1,5 +1,5 @@
 [package]
-name = "calculator"
+name = "yoda-calculator"
 version = "0.1.0"
 edition = "2021"
 description = "This is a simple command line app that acts as a scientific calculator, operating through commands instead of buttons."
