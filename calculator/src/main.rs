@@ -4,7 +4,7 @@ use std::io::{stderr, stdout};
 
 extern crate argparse;
 use argparse::{ArgumentParser, Store, StoreTrue};
-use num_traits::pow;
+use num_traits::{pow, Pow};
 // x: base number, y: number operated on it
 
 fn plus(x: f64, y: f64) -> f64 {
@@ -28,7 +28,7 @@ fn power_of(base: f64, exp: f64) -> f64 {
 }
 
 fn root_of(base: f64, power: f64) -> f64 {
-    return pow(base, (1.0/power) as usize);
+    return base.pow(1.0/power);
 }
 
 fn log(x: f64, base: f64) -> f64 {
@@ -70,9 +70,9 @@ fn radians_to_degrees(x: f64) -> f64 {
 
 fn main() {
     let mut base_number = 0.0;
-    let mut added_number = 0.0;
-    let mut subtracted_number = 0.0;
-    let mut multiplied_number = 1.0;
+    let mut addend = 0.0;
+    let mut subtrahend = 0.0;
+    let mut multiplier = 1.0;
     let mut divisor = 1.0;
     let mut exponent = 1.0;
     let mut root = 1.0;
@@ -92,14 +92,14 @@ fn main() {
         parser.set_description("This is a simple command line app that acts as a scientific calculator, operating through commands instead of buttons.");
         parser.refer(&mut base_number)
             .add_argument(&"base_number", Store, &"The base operand. Other operations will be performed on this number.");
-        parser.refer(&mut added_number)
+        parser.refer(&mut addend)
             .add_option(&["-p", "--plus"], Store, &"Add to the base number.");
-        parser.refer(&mut subtracted_number)
+        parser.refer(&mut subtrahend)
             .add_option(&["-s", "--subtract-by"], Store, &"Subtract from the base number.");
-        parser.refer(&mut multiplied_number)
+        parser.refer(&mut multiplier)
             .add_option(&["-m", "--multiply-by"], Store, &"Multiply with the base number.");
         parser.refer(&mut divisor)
-            .add_option(&["-d", "--divide"], Store, &"Divide from the base number.");
+            .add_option(&["-d", "--divide-by"], Store, &"Divide from the base number.");
         parser.refer(&mut exponent)
             .add_option(&["-x", "--exponent"], Store, &"Raise the base number to an exponent.");
         parser.refer(&mut root)
@@ -124,14 +124,14 @@ fn main() {
             .add_option(&["--radians-to-degrees"], StoreTrue, &"Convert the base number from radians to degrees.");
         parser.parse_args_or_exit();
     }
-    if (added_number!=0.0) {
-        println!("{}", plus(base_number, added_number));
+    if (addend!=0.0) {
+        println!("{}", plus(base_number, addend));
     }
-    else if (subtracted_number!=0.0) {
-        println!("{}", minus(base_number, subtracted_number));
+    else if (subtrahend!=0.0) {
+        println!("{}", minus(base_number, subtrahend));
     }
-    else if (multiplied_number!=1.0) {
-        println!("{}", multiply(base_number, multiplied_number));
+    else if (multiplier!=1.0) {
+        println!("{}", multiply(base_number, multiplier));
     }
     else if (divisor!=1.0){
         println!("{}", divide(base_number, divisor));
