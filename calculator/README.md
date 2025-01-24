@@ -2,6 +2,10 @@ This is a simple command line app that acts as a scientific calculator, operatin
 
 For now, only one operation may be performed at a time. However, this will be updated soon so that multiple operations can be performed through a single line!
 
+I made this because I had enough of the Windows Calculator GUI, where you need to click each button for each digit and operation, which is painstakingly slow. Instead, I find typing to be much faster, which is why I decided to write a calculator CLI!
+
+If you are tired of your laptop's default Calculator app, but are too lazy to grab your calculator from your backpack, like me, then hopefully you'll find this helpful!
+
 ## Commands
 For detailed directions on the command line: ```cargo run calculator -h```
 ### Addition (--plus or -p)
